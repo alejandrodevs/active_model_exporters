@@ -1,3 +1,3 @@
 require 'active_model'
-require 'active_model/exporters'
-require 'active_model/exporters/version'
+require 'active_model/exporter'
+require 'active_model/exporter/version'

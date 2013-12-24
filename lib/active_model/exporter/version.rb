@@ -1,5 +1,5 @@
 module ActiveModel
-  class Exporters
+  class Exporter
     VERSION = '0.0.1'
   end
 end

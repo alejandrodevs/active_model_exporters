@@ -1,11 +1,11 @@
 # coding: utf-8
 
 $:.unshift File.expand_path("../lib", __FILE__)
-require 'active_model_exporters'
+require 'active_model/exporter/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'active_model_exporters'
-  spec.version       = ActiveModel::Exporters::VERSION
+  spec.version       = ActiveModel::Exporter::VERSION
   spec.authors       = ['Alejandro Gutiérrez']
   spec.email         = ['alejandrodevs@gmail.com']
   spec.description   = 'A simple way to export data in Rails.'

@@ -1,4 +1,4 @@
 module ActiveModel
-  class Exporters
+  class Exporter
   end
 end
