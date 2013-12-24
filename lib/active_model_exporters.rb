@@ -1,5 +1,3 @@
-require 'active_model_exporters/version'
-
-module ActiveModelExporters
-  # Your code goes here...
-end
+require 'active_model'
+require 'active_model/exporters'
+require 'active_model/exporters/version'
