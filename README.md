@@ -1,4 +1,4 @@
-# ActiveModelExporters [![Coverage Status](https://coveralls.io/repos/alejandrogutierrez/active_model_exporters/badge.png)](https://coveralls.io/r/alejandrogutierrez/active_model_exporters)
+# ActiveModelExporters [![Build Status](https://travis-ci.org/alejandrogutierrez/active_model_exporters.png?branch=master)](https://travis-ci.org/alejandrogutierrez/active_model_exporters) [![Coverage Status](https://coveralls.io/repos/alejandrogutierrez/active_model_exporters/badge.png)](https://coveralls.io/r/alejandrogutierrez/active_model_exporters)
 
 TODO: Write a gem description
 
