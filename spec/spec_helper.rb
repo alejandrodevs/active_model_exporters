@@ -1,5 +1,4 @@
 require 'active_model_exporters'
-require 'rails/all'
 
 require 'coveralls'
 Coveralls.wear!
