@@ -1,5 +1,7 @@
 module ActiveModel
   class Exporter
+    attr_accessor :collection
+
     class << self
       attr_accessor :_attributes, :_headers
 
@@ -12,6 +14,20 @@ module ActiveModel
       def attributes(*attrs)
         @_attributes.concat(attrs)
       end
+    end
+
+    def initialize(collection)
+      @collection = collection
+    end
+
+    def to_csv
+      CSV.generate do |file|
+        file << headers
+      end
+    end
+
+    def headers
+      ['Name', 'Email', 'Age']
     end
   end
 end
