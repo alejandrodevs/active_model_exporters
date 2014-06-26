@@ -3,8 +3,8 @@ module ActiveModel
     class << self
       attr_accessor :_attributes, :_headers, :_filename
 
-      alias :headers :_headers=
-      alias :filename :_filename=
+      alias :headers= :_headers=
+      alias :filename= :_filename=
 
       def inherited(base)
         base._attributes = (_attributes || []).dup
@@ -32,9 +32,20 @@ module ActiveModel
 
     def to_csv
       CSV.generate do |file|
-        file << attributes.map(&:to_s) if headers
+        file << header_columns if headers
         collection.each { |obj| file << values_for(obj) }
       end
+    end
+
+    def header_columns
+      return attributes.map(&:to_s) unless klass.respond_to?(:human_attribute_name)
+      attributes.map do |attr|
+        klass.human_attribute_name(attr)
+      end
+    end
+
+    def klass
+      collection.first.class
     end
 
     def values_for(object)
