@@ -4,7 +4,7 @@
 `ActiveModel::Exporters` aims to provide an easy way to export
 collections of `ActiveModel` or `ActiveRecord` objects.
 It's based on object-oriented development and inspired on
-[active_model_serializers](https://github.com/rails-api/active_model_serializers)
+[active_model_serializers](https://github.com/rails-api/active_model_serializers).
 
 ## Installation
 
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     @posts = Post.all
 
     respond_to do |format|
-      format.csv { send_data PostExporter.new(@posts).to_csv }
+      format.csv { render csv: @posts }
     end
   end
 end
@@ -44,14 +44,6 @@ end
 
 When `http://localhost:3000/posts.csv` you will get a file with all
 posts in a CSV file.
-
-## Disabling file headers
-In the exporter:
-```ruby
-class PostExporter < ActiveModel::Exporter
-  self.headers = false
-end
-```
 
 ## Contributing
 
