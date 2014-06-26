@@ -1,57 +1,41 @@
 module ActiveModel
   class Exporter
     class << self
-      attr_accessor :_attributes, :_headers, :_filename
-
-      alias :headers= :_headers=
-      alias :filename= :_filename=
+      attr_accessor :_attributes
 
       def inherited(base)
         base._attributes = (_attributes || []).dup
-        base._headers = _headers || true
       end
 
       def attributes(*attrs)
         @_attributes.concat(attrs)
+
+        attrs.each do |attr|
+          define_method(attr) do
+            object.send(attr)
+          end
+        end
+      end
+
+      def exporter_for(resource)
+        if resource.respond_to?(:to_ary)
+          ArrayExporter
+        else
+          "#{resource.class.name}Exporter".safe_constantize
+        end
       end
     end
 
 
-    attr_accessor :collection,
-                  :attributes,
-                  :headers,
-                  :filename
+    attr_accessor :object, :attributes
 
-    def initialize(collection, options = {})
-      @collection = collection
-
+    def initialize(object, options = {})
+      @object = object
       @attributes = self.class._attributes.dup
-      @headers    = self.class._headers
-      @filename   = self.class._filename
     end
 
-    def to_csv
-      CSV.generate do |file|
-        file << header_columns if headers
-        collection.each { |obj| file << values_for(obj) }
-      end
-    end
-
-    def header_columns
-      return attributes.map(&:to_s) unless klass.respond_to?(:human_attribute_name)
-      attributes.map do |attr|
-        klass.human_attribute_name(attr)
-      end
-    end
-
-    def klass
-      collection.first.class
-    end
-
-    def values_for(object)
-      attributes.map do |attr|
-        object.send(attr.to_sym)
-      end
+    def values
+      attributes.map { |attr| send(attr) }
     end
   end
 end
