@@ -1,3 +1,5 @@
+require 'csv'
+
 module ActiveModel
   class Exporter
     attr_accessor :collection
