@@ -10,7 +10,7 @@ module ActiveModel
       CSV.generate do |file|
         collection.each do |object|
           exporter = exporter_for(object)
-          file.push(exporter.values)
+          file << exporter.values
         end
       end
     end
