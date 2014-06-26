@@ -23,7 +23,7 @@ describe ActiveModel::Exporter do
 
   describe '.headers' do
     it 'is an _headers= class method alias' do
-      expect(PostExporter.method(:headers)).to eq(PostExporter.method(:_headers=))
+      expect(PostExporter.method(:headers=)).to eq(PostExporter.method(:_headers=))
     end
   end
 
