@@ -46,7 +46,7 @@ render csv: @posts, exporter: OtherPostExporter
 As `ActiveModel::Serializers` does, you can access the object being exported as `object`.
 ```ruby
 class PostExporter < ActiveModel::Exporter
-  attributes :id, :name, :email, :full_name
+  attributes :id, :name, :full_name
 
   def full_name
     "#{object.name} #{object.last_name}"

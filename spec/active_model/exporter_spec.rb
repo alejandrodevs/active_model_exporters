@@ -20,18 +20,4 @@ describe ActiveModel::Exporter do
       end
     end
   end
-
-  describe '.headers' do
-    it 'is an _headers= class method alias' do
-      expect(PostExporter.method(:headers=)).to eq(PostExporter.method(:_headers=))
-    end
-  end
-
-  describe 'initializer' do
-    it 'assings collection to an accessor' do
-      collection = [1, 2, 3, 4]
-      exporter = PostExporter.new(collection)
-      expect(exporter.collection).to eq collection
-    end
-  end
 end
