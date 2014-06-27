@@ -8,13 +8,11 @@ It's based on object-oriented development and inspired on
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'active_model_exporters'
-
-And then execute:
-
-    $ bundle
+Add this line to your Gemfile:
+```ruby
+gem 'active_model_exporters'
+```
+Run the bundle command to install it.
 
 ## Usage
 
@@ -38,7 +36,7 @@ class PostsController < ApplicationController
 end
 ```
 
-### Specify a exporter
+### Custom exporter
 To specify a custom exporter for an object, you can do the next:
 ```ruby
 render csv: @posts, exporter: OtherPostExporter
