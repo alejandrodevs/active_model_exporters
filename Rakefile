@@ -1,16 +1,9 @@
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
-namespace :spec do
-  desc "Runs unit tests"
-  task :unit do
-    system("bundle exec rspec")
-  end
-
-  desc "Run all tests"
-  task :all do
-    Rake.application['spec:unit'].invoke
-    raise "Unit testing failed!" unless $?.exitstatus == 0
-  end
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
 end
 
-task default: 'spec:all'
+task default: :test
