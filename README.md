@@ -42,7 +42,7 @@ To specify a custom exporter for an object, you can do the next:
 render csv: @posts, exporter: OtherPostExporter
 ```
 
-### Attributes
+### Computed properties
 As `ActiveModel::Serializers` does, you can access the object being exported as `object`.
 ```ruby
 class PostExporter < ActiveModel::Exporter
