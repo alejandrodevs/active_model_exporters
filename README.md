@@ -14,7 +14,7 @@ gem 'active_model_exporters'
 ```
 Run the bundle command to install it.
 
-## Usage
+## Getting started
 
 Generate an exporter in `app/exporters/post_exporter.rb`:
 ```ruby
@@ -53,6 +53,10 @@ class PostExporter < ActiveModel::Exporter
   end
 end
 ```
+
+## TO-DO
+* User scope
+* Filter attributes
 
 ## Contributing
 
