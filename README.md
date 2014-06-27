@@ -54,14 +54,8 @@ class PostExporter < ActiveModel::Exporter
 end
 ```
 
-## TO-DO
-* User scope
-* Filter attributes
-
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+New feature or code refactoring? Submit a pull request that implements it. Don't forget to write your tests and include a CHANGELOG with your updates.
+
+Thank you :heart:
