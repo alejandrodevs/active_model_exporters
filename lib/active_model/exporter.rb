@@ -13,7 +13,7 @@ module ActiveModel
         attrs.each do |attr|
           define_method(attr) do
             object.send(attr)
-          end
+          end unless method_defined?(attr)
         end
       end
 

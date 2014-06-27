@@ -16,10 +16,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install active_model_exporters
-
 ## Usage
 
 Generate an exporter in `app/exporters/post_exporter.rb`:
@@ -42,8 +38,23 @@ class PostsController < ApplicationController
 end
 ```
 
-When `http://localhost:3000/posts.csv` you will get a file with all
-posts in a CSV file.
+### Specify a exporter
+To specify a custom exporter for an object, you can do the next:
+```ruby
+render csv: @posts, exporter: OtherPostExporter
+```
+
+### Attributes
+As `ActiveModel::Serializers` does, you can access the object being exported as `object`.
+```ruby
+class PostExporter < ActiveModel::Exporter
+  attributes :id, :name, :email, :full_name
+
+  def full_name
+    "#{object.name} #{object.last_name}"
+  end
+end
+```
 
 ## Contributing
 

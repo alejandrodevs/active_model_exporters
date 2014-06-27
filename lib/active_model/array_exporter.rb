@@ -1,9 +1,10 @@
 module ActiveModel
   class ArrayExporter
-    attr_reader :collection
+    attr_reader :collection, :exporter
 
     def initialize(collection, options = {})
       @collection = collection
+      @exporter   = options[:exporter]
     end
 
     def to_csv
@@ -18,7 +19,7 @@ module ActiveModel
     private
 
     def exporter_for(object)
-      exporter_class = Exporter.exporter_for(object)
+      exporter_class = exporter || Exporter.exporter_for(object)
       exporter_class.new(object)
     end
   end
