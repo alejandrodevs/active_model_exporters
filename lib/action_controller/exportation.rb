@@ -20,9 +20,16 @@ module ActionController
 
     private
 
+    def exportation_scope
+      scope = self.class._exportation_scope
+      send(scope) if scope && respond_to?(scope, true)
+    end
+
     def build_exporter(resource, options)
-      exporter = ActiveModel::Exporter.exporter_for(resource)
-      exporter.new(resource, options) if exporter
+      if exporter = ActiveModel::Exporter.exporter_for(resource)
+        options[:scope] ||= exportation_scope
+        exporter.new(resource, options)
+      end
     end
   end
 end

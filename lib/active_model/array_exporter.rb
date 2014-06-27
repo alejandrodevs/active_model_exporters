@@ -1,9 +1,10 @@
 module ActiveModel
   class ArrayExporter
-    attr_reader :collection, :exporter
+    attr_reader :collection, :exporter, :scope
 
     def initialize(collection, options = {})
       @collection = collection
+      @scope      = options[:scope]
       @exporter   = options[:exporter]
     end
 
@@ -20,7 +21,7 @@ module ActiveModel
 
     def exporter_for(object)
       exporter_class = exporter || Exporter.exporter_for(object)
-      exporter_class.new(object)
+      exporter_class.new(object, scope: scope)
     end
   end
 end

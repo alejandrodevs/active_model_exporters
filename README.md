@@ -19,7 +19,7 @@ Run the bundle command to install it.
 Generate an exporter in `app/exporters/post_exporter.rb`:
 ```ruby
 class PostExporter < ActiveModel::Exporter
-  attributes :id, :name, :email
+  attributes :id, :title, :content
 end
 ```
 
@@ -36,8 +36,20 @@ class PostsController < ApplicationController
 end
 ```
 
+Or:
+```ruby
+class PostsController < ApplicationController
+  respond_to :csv
+
+  def index
+    @posts = Post.all
+    respond_with @posts
+  end
+end
+```
+
 ### Custom exporter
-To specify a custom exporter for an object, you can do the next:
+To specify a custom exporter for an object, you can do the next in your controller:
 ```ruby
 render csv: @posts, exporter: OtherPostExporter
 ```
@@ -45,11 +57,43 @@ render csv: @posts, exporter: OtherPostExporter
 ### Computed properties
 As `ActiveModel::Serializers` does, you can access the object being exported as `object`.
 ```ruby
-class PostExporter < ActiveModel::Exporter
-  attributes :id, :name, :full_name
+class UserExporter < ActiveModel::Exporter
+  attributes :first_name, :last_name, :full_name
 
   def full_name
-    "#{object.name} #{object.last_name}"
+    "#{object.first_name} #{object.last_name}"
+  end
+end
+```
+
+### Exporter scope
+
+#### 1. Default scope
+As `ActiveModel::Serializers` does, you can access to the current user application via `scope`.
+```ruby
+class UserExporter < ActiveModel::Exporter
+  attributes :name, :email
+
+  def email
+    object.name unless scope.admin?
+  end
+end
+```
+
+#### 2. Explicit scope
+In your controller, include the scope option:
+```ruby
+render csv: @posts, scope: :current_admin
+```
+
+#### 3. Calling exportation_scope
+In your controller, set the exportation scope:
+```ruby
+class PostsController < ApplicationController
+  exportation_scope :current_admin
+
+  def index
+    # Do something...
   end
 end
 ```

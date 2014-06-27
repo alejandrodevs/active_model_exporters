@@ -27,10 +27,11 @@ module ActiveModel
     end
 
 
-    attr_accessor :object, :attributes
+    attr_accessor :object, :attributes, :scope
 
     def initialize(object, options = {})
-      @object = object
+      @object     = object
+      @scope      = options[:scope]
       @attributes = self.class._attributes.dup
     end
 
