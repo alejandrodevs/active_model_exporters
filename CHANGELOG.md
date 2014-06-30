@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Version 0.0.3
+* Adding filter method
+
 ### Version 0.0.2
 * Default current_user scope
 * Explicit exportation scope

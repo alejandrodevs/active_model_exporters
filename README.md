@@ -98,6 +98,25 @@ class PostsController < ApplicationController
 end
 ```
 
+### Filter attributes
+As `ActiveModel::Serializers` does, you can reject some attributes
+according to your business rules:
+```ruby
+class UserExporter < ActiveModel::Exporter
+  attributes :name, :email, :address
+
+  def filter(attrs)
+    if object.admin?
+      attrs - [:address]
+    else
+      attrs
+    end
+  end
+end
+```
+Rejected attributes will be blank in the downloaded file.
+
+
 ## Contributing
 
 New feature or code refactoring? Submit a pull request that implements it. Don't forget to write your tests and include a CHANGELOG with your updates.
