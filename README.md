@@ -75,7 +75,7 @@ class UserExporter < ActiveModel::Exporter
   attributes :name, :email
 
   def email
-    object.name unless scope.admin?
+    object.email unless scope.admin?
   end
 end
 ```

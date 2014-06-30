@@ -27,16 +27,26 @@ module ActiveModel
     end
 
 
-    attr_accessor :object, :attributes, :scope
+    attr_accessor :object, :scope
 
     def initialize(object, options = {})
-      @object     = object
-      @scope      = options[:scope]
-      @attributes = self.class._attributes.dup
+      @object = object
+      @scope  = options[:scope]
     end
 
     def values
-      attributes.map { |attr| send(attr) }
+      attrs = filter(attributes)
+      attributes.map { |attr| send(attr) if attrs.include?(attr) }
+    end
+
+    def filter(attrs)
+      attrs
+    end
+
+    private
+
+    def attributes
+      self.class._attributes.dup
     end
   end
 end

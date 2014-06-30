@@ -115,5 +115,25 @@ module ActionController
         assert_equal "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
       end
     end
+
+    class UsingFilterAttributesTest < ActionController::TestCase
+      class TestsController < ActionController::Base
+        def render_using_filter_attributes
+          render csv: [
+            User.new(first_name: 'Foo1', last_name: 'Bar1', email: 'FooBar1'),
+            User.new(first_name: 'Foo2', last_name: 'Bar2', email: 'FooBar2')
+          ], exporter: FilterUserExporter
+        end
+      end
+
+      tests TestsController
+
+      def test_render_using_filter_attributes
+        get :render_using_filter_attributes
+        assert_equal 'text/csv', @response.content_type
+        assert_equal "Foo1,,FooBar1\n"\
+                     "Foo2,Bar2,FooBar2\n", @response.body
+      end
+    end
   end
 end
