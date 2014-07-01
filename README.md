@@ -31,6 +31,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.csv { render csv: @posts }
+      format.xls { render xls: @posts }
     end
   end
 end
@@ -39,7 +40,7 @@ end
 Or:
 ```ruby
 class PostsController < ApplicationController
-  respond_to :csv
+  respond_to :csv, :xls
 
   def index
     @posts = Post.all

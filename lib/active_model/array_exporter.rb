@@ -4,28 +4,27 @@ module ActiveModel
 
     def initialize(collection, options = {})
       @collection = collection
-      @scope      = options[:scope]
-      @exporter   = options[:exporter]
+      @scope      = options.delete(:scope)
+      @exporter   = options.delete(:exporter)
     end
 
-    def to_csv(options = {})
-      generate(options)
+    def to_csv
+      generate_file
     end
 
-    def to_xls(options = {})
-      options[:col_sep] = "\t"
-      generate(options)
+    def to_xls
+      generate_file(col_sep: "\t")
     end
 
     alias :to_xlsx :to_xls
 
-    def generate(options = {})
+    def generate_file(options = {})
       CSV.generate(options) do |file|
         collection.each do |object|
           exporter = exporter_for(object)
           file << exporter.values
         end
-      end.encode('iso-8859-1')
+      end.encode('ISO-8859-1')
     end
 
     private

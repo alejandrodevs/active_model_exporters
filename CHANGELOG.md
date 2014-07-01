@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Version 0.0.4
+* Exporting to XLS format
+
 ### Version 0.0.3
 * Adding filter method
 
