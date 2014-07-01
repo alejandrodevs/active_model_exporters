@@ -1,5 +1,5 @@
 module ActiveModel
   class Exporter
-    TYPES = [:csv, :xls, :xlsx]
+    TYPES = [:csv, :xls]
   end
 end

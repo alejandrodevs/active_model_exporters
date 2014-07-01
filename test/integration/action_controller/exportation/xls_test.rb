@@ -17,7 +17,7 @@ module ActionController
 
       def test_render_using_implicit_exporter
         get :render_using_implicit_exporter
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\tBar1\tFoo1-Bar1\n"\
                      "Foo2\tBar2\tFoo2-Bar2\n"\
                      "Foo3\tBar3\tFoo3-Bar3\n", @response.body
@@ -37,7 +37,7 @@ module ActionController
 
       def test_render_using_explicit_exporter
         get :render_using_explicit_exporter
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\tBar1\n", @response.body
       end
     end
@@ -61,7 +61,7 @@ module ActionController
 
       def test_render_using_implicit_exportation_scope
         get :render_using_implicit_exportation_scope
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\tBar1\tFoo1-Bar1-current_user\n", @response.body
       end
     end
@@ -85,7 +85,7 @@ module ActionController
 
       def test_render_using_explicit_exportation_scope
         get :render_using_explicit_exportation_scope
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\tBar1\tFoo1-Bar1-current_admin\n", @response.body
       end
     end
@@ -111,7 +111,7 @@ module ActionController
 
       def test_render_calling_exportation_scope
         get :render_calling_exportation_scope
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\tBar1\tFoo1-Bar1-current_admin\n", @response.body
       end
     end
@@ -130,7 +130,7 @@ module ActionController
 
       def test_render_using_filter_attributes
         get :render_using_filter_attributes
-        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal 'application/vnd.ms-excel; charset=iso-8859-1; header=present', @response.content_type
         assert_equal "Foo1\t\tFooBar1\n"\
                      "Foo2\tBar2\tFooBar2\n", @response.body
       end

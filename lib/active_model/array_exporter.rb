@@ -16,15 +16,12 @@ module ActiveModel
       generate_file(col_sep: "\t")
     end
 
-    alias :to_xlsx :to_xls
-
     def generate_file(options = {})
       CSV.generate(options) do |file|
         collection.each do |object|
-          exporter = exporter_for(object)
-          file << exporter.values
+          file << exporter_for(object).values
         end
-      end.encode('ISO-8859-1')
+      end
     end
 
     private

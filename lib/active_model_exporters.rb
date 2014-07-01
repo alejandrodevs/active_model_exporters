@@ -9,13 +9,20 @@ if defined?(ActionController)
   require 'action_controller/exportation'
 
   Mime::Type.register('application/vnd.ms-excel', :xls)
-  Mime::Type.register('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', :xlsx)
 
   ActiveModel::Exporter::TYPES.each do |type|
     ActionController::Renderers.add type do |resource, options|
-      method = "to_#{type}".to_sym
-      self.content_type ||= "Mime::#{type.upcase}".safe_constantize
-      resource.respond_to?(method) ? resource.send(method) : resource
+      filename  = options[:filename] || 'data'
+      charset   = options[:charset]  || 'iso-8859-1'
+      mime_type = "Mime::#{type.upcase}".safe_constantize || Mime::TEXT
+      method    = "to_#{type}".to_sym
+
+      if resource.respond_to?(method)
+        send_data resource.send(method), type: "#{mime_type.to_s}; charset=#{charset}; header=present",
+                                         disposition: "attachment; filename=#{filename}.#{type}"
+      else
+        resource
+      end
     end
   end
 
