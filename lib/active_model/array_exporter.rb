@@ -25,7 +25,7 @@ module ActiveModel
           exporter = exporter_for(object)
           file << exporter.values
         end
-      end
+      end.encode('iso-8859-1')
     end
 
     private
