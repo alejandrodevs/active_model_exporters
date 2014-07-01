@@ -8,8 +8,19 @@ module ActiveModel
       @exporter   = options[:exporter]
     end
 
-    def to_csv
-      CSV.generate do |file|
+    def to_csv(options = {})
+      generate(options)
+    end
+
+    def to_xls(options = {})
+      options[:col_sep] = "\t"
+      generate(options)
+    end
+
+    alias :to_xlsx :to_xls
+
+    def generate(options = {})
+      CSV.generate(options) do |file|
         collection.each do |object|
           exporter = exporter_for(object)
           file << exporter.values

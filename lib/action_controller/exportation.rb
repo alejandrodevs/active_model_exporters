@@ -13,9 +13,11 @@ module ActionController
       end
     end
 
-    def _render_option_csv(resource, options)
-      exporter = build_exporter(resource, options)
-      exporter ? super(exporter, options) : super
+    ActiveModel::Exporter::TYPES.each do |type|
+      define_method "_render_option_#{type}" do |resource, options|
+        exporter = build_exporter(resource, options)
+        exporter ? super(exporter, options) : super
+      end
     end
 
     private
