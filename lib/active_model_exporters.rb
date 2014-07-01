@@ -12,14 +12,19 @@ if defined?(ActionController)
 
   ActiveModel::Exporter::TYPES.each do |type|
     ActionController::Renderers.add type do |resource, options|
-      filename  = options[:filename] || 'data'
-      charset   = options[:charset]  || 'iso-8859-1'
-      mime_type = "Mime::#{type.upcase}".safe_constantize || Mime::TEXT
       method    = "to_#{type}".to_sym
 
       if resource.respond_to?(method)
-        send_data resource.send(method), type: "#{mime_type.to_s}; charset=#{charset}; header=present",
-                                         disposition: "attachment; filename=#{filename}.#{type}"
+        filename  = options[:filename]
+        encoding  = options[:encoding] || 'iso-8859-1'
+        mime_type = "Mime::#{type.upcase}".safe_constantize || Mime::TEXT
+
+        file = resource.send(method).encode(encoding)
+        options = {}
+        options.merge!(type: mime_type)
+        options.merge!(disposition: "attachment; filename=#{filename}.#{type}") if filename
+
+        send_data file, options
       else
         resource
       end
