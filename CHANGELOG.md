@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### Version 0.0.5
+* Using send_data method
+* Customizable filename
+* Customizable encode format
+
 ### Version 0.0.4
 * Exporting to XLS format
 
@@ -14,4 +19,4 @@
 ### Version 0.0.1
 * First version
 * Computed properties
-* Customized exporter
+* Customizable exporter
