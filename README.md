@@ -97,7 +97,7 @@ end
 #### 2. Explicit scope
 In your controller, include the scope option:
 ```ruby
-render csv: @posts, scope: :current_admin
+render csv: @posts, scope: current_admin
 ```
 
 #### 3. Calling exportation_scope
