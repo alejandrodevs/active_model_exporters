@@ -50,9 +50,22 @@ end
 ```
 
 ### Custom exporter
-To specify a custom exporter for an object, you can do the next in your controller:
+To specify a custom exporter for each object, you can do the next in your controller:
 ```ruby
 render csv: @posts, exporter: OtherPostExporter
+```
+
+### Custom filename
+By default filename is the pluralized collection type. Example: `posts.xls`.
+To specify another, you can do the next:
+```ruby
+render xls: @posts, filename: 'super_posts.xls'
+```
+
+### Custom encode format
+By default encode format is `iso-8859-1`. You can change it doing the next:
+```ruby
+render csv: @posts, encode: 'UTF-8'
 ```
 
 ### Computed properties
