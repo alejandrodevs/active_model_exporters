@@ -16,19 +16,24 @@ module ActiveModel
       generate_file(col_sep: "\t")
     end
 
+    private
+
     def generate_file(options = {})
       CSV.generate(options) do |file|
+        file << headers
         collection.each do |object|
           file << exporter_for(object).values
         end
       end
     end
 
-    private
-
     def exporter_for(object)
       exporter_class = exporter || Exporter.exporter_for(object)
       exporter_class.new(object, scope: scope)
+    end
+
+    def headers
+      exporter_for(collection.first).class._attributes
     end
   end
 end

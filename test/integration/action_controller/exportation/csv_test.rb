@@ -18,7 +18,8 @@ module ActionController
       def test_render_using_implicit_exporter
         get :render_using_implicit_exporter
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,Bar1,Foo1-Bar1\n"\
+        assert_equal "first_name,last_name,full_name\n"\
+                     "Foo1,Bar1,Foo1-Bar1\n"\
                      "Foo2,Bar2,Foo2-Bar2\n"\
                      "Foo3,Bar3,Foo3-Bar3\n", @response.body
       end
@@ -38,7 +39,8 @@ module ActionController
       def test_render_using_explicit_exporter
         get :render_using_explicit_exporter
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,Bar1\n", @response.body
+        assert_equal "first_name,last_name\n"\
+                     "Foo1,Bar1\n", @response.body
       end
     end
 
@@ -62,7 +64,8 @@ module ActionController
       def test_render_using_implicit_exportation_scope
         get :render_using_implicit_exportation_scope
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,Bar1,Foo1-Bar1-current_user\n", @response.body
+        assert_equal "first_name,last_name,full_name\n"\
+                     "Foo1,Bar1,Foo1-Bar1-current_user\n", @response.body
       end
     end
 
@@ -86,7 +89,8 @@ module ActionController
       def test_render_using_explicit_exportation_scope
         get :render_using_explicit_exportation_scope
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
+        assert_equal "first_name,last_name,full_name\n"\
+                     "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
       end
     end
 
@@ -112,7 +116,8 @@ module ActionController
       def test_render_calling_exportation_scope
         get :render_calling_exportation_scope
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
+        assert_equal "first_name,last_name,full_name\n"\
+                     "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
       end
     end
 
@@ -131,7 +136,8 @@ module ActionController
       def test_render_using_filter_attributes
         get :render_using_filter_attributes
         assert_equal 'text/csv', @response.content_type
-        assert_equal "Foo1,,FooBar1\n"\
+        assert_equal "first_name,last_name,email\n"\
+                     "Foo1,,FooBar1\n"\
                      "Foo2,Bar2,FooBar2\n", @response.body
       end
     end

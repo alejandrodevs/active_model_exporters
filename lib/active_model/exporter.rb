@@ -39,11 +39,11 @@ module ActiveModel
       attributes.map { |attr| send(attr) if attrs.include?(attr) }
     end
 
+    private
+
     def filter(attrs)
       attrs
     end
-
-    private
 
     def attributes
       self.class._attributes.dup
