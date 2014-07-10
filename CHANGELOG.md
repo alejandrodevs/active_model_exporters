@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Version 0.1.0
+* Including file headers
+
 ### Version 0.0.5
 * Using send_data method
 * Customizable filename
