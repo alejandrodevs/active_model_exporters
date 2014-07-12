@@ -4,8 +4,11 @@ require 'active_model_exporters'
 require 'minitest/autorun'
 require 'minitest/unit'
 require 'minitest/pride'
+require 'fixtures/locale'
 require 'fixtures/models'
 require 'fixtures/exporters'
+require 'fixtures/active_record/models'
+require 'fixtures/active_record/exporters'
 
 module TestHelper
   Routes = ActionDispatch::Routing::RouteSet.new

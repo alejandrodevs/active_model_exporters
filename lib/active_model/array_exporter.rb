@@ -33,7 +33,16 @@ module ActiveModel
     end
 
     def headers
-      exporter_for(collection.first).class._attributes
+      object     = collection.first
+      attributes = exporter_for(object).class._attributes.dup
+
+      attributes.map do |attr|
+        if object.class.respond_to?(:human_attribute_name)
+          object.class.human_attribute_name(attr)
+        else
+          attr.to_s
+        end
+      end
     end
   end
 end
