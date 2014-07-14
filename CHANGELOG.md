@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Version 0.2.0
+* Using I18n translations in file headers.
+
 ### Version 0.1.0
 * Including file headers
 

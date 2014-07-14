@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module ActiveModel
-  class Exporter
+  class Exporter::CSV
     class LocaleHeadersTest < Minitest::Test
       def setup
         @collection = [

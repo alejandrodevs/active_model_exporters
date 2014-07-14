@@ -130,6 +130,8 @@ end
 ```
 Rejected attributes will be blank in the downloaded file.
 
+### Headers
+`ActiveModel::Exporters` uses I18n translations in file headers.
 
 ## Contributing
 
