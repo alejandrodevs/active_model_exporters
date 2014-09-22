@@ -37,18 +37,6 @@ class PostsController < ApplicationController
 end
 ```
 
-Or:
-```ruby
-class PostsController < ApplicationController
-  respond_to :csv, :xls
-
-  def index
-    @posts = Post.all
-    respond_with @posts
-  end
-end
-```
-
 ### Custom exporter
 To specify a custom exporter for each object, you can do the next in your controller:
 ```ruby
@@ -83,7 +71,7 @@ end
 ### Exporter scope
 
 #### 1. Default scope
-As `ActiveModel::Serializers` does, you can access to the current user application via `scope`.
+As `ActiveModel::Serializers` does, you can access to the current user via `scope`.
 ```ruby
 class UserExporter < ActiveModel::Exporter
   attributes :name, :email
@@ -137,4 +125,4 @@ Rejected attributes will be blank in the downloaded file.
 
 New feature or code refactoring? Submit a pull request that implements it. Don't forget to write your tests and include a CHANGELOG with your updates.
 
-Thank you :heart:
+Thank you!
