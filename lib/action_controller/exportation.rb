@@ -14,9 +14,11 @@ module ActionController
     end
 
     ActiveModel::Exporter::TYPES.each do |type|
-      define_method "_render_option_#{type}" do |resource, options|
-        exporter = build_exporter(resource, options)
-        exporter ? super(exporter, options) : super
+      [:_render_option_, :_render_with_renderer_json].each do |prefix|
+        define_method "#{prefix}#{type}" do |resource, options|
+          exporter = build_exporter(resource, options)
+          exporter ? super(exporter, options) : super
+        end
       end
     end
 
