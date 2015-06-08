@@ -14,7 +14,7 @@ module ActionController
     end
 
     ActiveModel::Exporter::TYPES.each do |type|
-      [:_render_option_, :_render_with_renderer_json].each do |prefix|
+      [:_render_option_, :_render_with_renderer_].each do |prefix|
         define_method "#{prefix}#{type}" do |resource, options|
           exporter = build_exporter(resource, options)
           exporter ? super(exporter, options) : super
