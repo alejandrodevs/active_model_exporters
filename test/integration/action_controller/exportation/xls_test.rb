@@ -141,5 +141,22 @@ module ActionController
                      "Foo2\tBar2\tFooBar2\n", @response.body
       end
     end
+
+    class ExporterSingleResourceTest < ActionController::TestCase
+      class TestsController < ActionController::Base
+        def render_single_resource
+          render xls: User.new(first_name: 'Foo1', last_name: 'Bar1')
+        end
+      end
+
+      tests TestsController
+
+      def test_render_single_resource
+        get :render_single_resource
+        assert_equal 'application/vnd.ms-excel', @response.content_type
+        assert_equal "first_name\tlast_name\tfull_name\n"\
+                     "Foo1\tBar1\tFoo1-Bar1\n", @response.body
+      end
+    end
   end
 end

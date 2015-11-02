@@ -18,16 +18,12 @@ module ActiveModel
       end
 
       def exporter_for(resource)
-        if resource.respond_to?(:to_ary)
-          ArrayExporter
-        else
-          "#{resource.class.name}Exporter".safe_constantize
-        end
+        "#{resource.class.name}Exporter".safe_constantize
       end
     end
 
 
-    attr_accessor :object, :scope
+    attr_reader :object, :scope
 
     def initialize(object, options = {})
       @object = object
@@ -38,8 +34,6 @@ module ActiveModel
       attrs = filter(attributes)
       attributes.map { |attr| send(attr) if attrs.include?(attr) }
     end
-
-    private
 
     def filter(attrs)
       attrs

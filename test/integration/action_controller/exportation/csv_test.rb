@@ -141,5 +141,22 @@ module ActionController
                      "Foo2,Bar2,FooBar2\n", @response.body
       end
     end
+
+    class ExporterSingleResourceTest < ActionController::TestCase
+      class TestsController < ActionController::Base
+        def render_single_resource
+          render csv: User.new(first_name: 'Foo1', last_name: 'Bar1')
+        end
+      end
+
+      tests TestsController
+
+      def test_render_single_resource
+        get :render_single_resource
+        assert_equal 'text/csv', @response.content_type
+        assert_equal "first_name,last_name,full_name\n"\
+                     "Foo1,Bar1,Foo1-Bar1\n", @response.body
+      end
+    end
   end
 end

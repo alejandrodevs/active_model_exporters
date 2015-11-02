@@ -3,7 +3,7 @@ module ActiveModel
     attr_reader :collection, :exporter, :scope
 
     def initialize(collection, options = {})
-      @collection = collection
+      @collection = Array(collection)
       @scope      = options.delete(:scope)
       @exporter   = options.delete(:exporter)
     end
@@ -34,7 +34,7 @@ module ActiveModel
 
     def headers
       object = collection.first
-      attributes = exporter_for(object).class._attributes.dup
+      attributes = exporter_for(object).attributes
 
       if object.class.respond_to?(:human_attribute_name)
         attributes.map { |attr| object.class.human_attribute_name(attr) }

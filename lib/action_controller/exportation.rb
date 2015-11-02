@@ -30,7 +30,7 @@ module ActionController
     end
 
     def build_exporter(resource, options)
-      if exporter = ActiveModel::Exporter.exporter_for(resource)
+      if exporter = ActiveModel::ArrayExporter
         options[:scope] ||= exportation_scope
         exporter.new(resource, options)
       end
