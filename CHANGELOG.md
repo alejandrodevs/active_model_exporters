@@ -1,5 +1,14 @@
 # CHANGELOG
 
+### Version 0.3.2
+* Adding support to export a single resource.
+
+### Version 0.3.1
+* Fixing errors with rails 4.2+.
+
+### Version 0.3.0
+* Adding support to rails 4.2+.
+
 ### Version 0.2.0
 * Using I18n translations in file headers.
 
