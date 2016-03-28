@@ -1,5 +1,5 @@
 # ActiveModel::Exporters
-[![Build Status](https://travis-ci.org/alejandrogutierrez/active_model_exporters.png?branch=master)](https://travis-ci.org/alejandrogutierrez/active_model_exporters) [![Coverage Status](https://coveralls.io/repos/alejandrogutierrez/active_model_exporters/badge.png)](https://coveralls.io/r/alejandrogutierrez/active_model_exporters)
+[![Build Status](https://travis-ci.org/alejandrodevs/active_model_exporters.png?branch=master)](https://travis-ci.org/alejandrodevs/active_model_exporters) [![Coverage Status](https://coveralls.io/repos/github/alejandrodevs/active_model_exporters/badge.svg?branch=master)](https://coveralls.io/github/alejandrodevs/active_model_exporters?branch=master)
 
 `ActiveModel::Exporters` aims to provide an easy way to export
 collections of `ActiveModel` or `ActiveRecord` objects.
