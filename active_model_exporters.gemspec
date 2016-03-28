@@ -10,15 +10,15 @@ Gem::Specification.new do |spec|
   spec.email         = ['alejandrodevs@gmail.com']
   spec.description   = 'A simple way to export data in Rails.'
   spec.summary       = 'A simple way to export data in Rails.'
-  spec.homepage      = 'https://github.com/alejandrogutierrez/active_model_exporters'
+  spec.homepage      = 'https://github.com/alejandrodevs/active_model_exporters'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 1.9.3'
+  spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_dependency 'activemodel', '>= 3.2'
-  spec.add_development_dependency 'rails', '>= 3.2'
+  spec.add_dependency 'activemodel', '>= 4.0'
+  spec.add_development_dependency 'rails', '>= 4.0'
 end
