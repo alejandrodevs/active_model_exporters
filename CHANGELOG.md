@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Version 0.4.0
+* Ruby ~> 1.9.3 is not longer supported.
+* activemodel version dependency >= 4.0.
+
 ### Version 0.3.2
 * Adding support to export a single resource.
 
