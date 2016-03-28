@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'ostruct'
 require 'action_controller'
 require 'active_model_exporters'
