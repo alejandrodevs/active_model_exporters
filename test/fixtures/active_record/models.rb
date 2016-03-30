@@ -9,7 +9,8 @@ ActiveRecord::Schema.define do
   create_table :ar_users, force: true do |t|
     t.string     :first_name
     t.string     :last_name
-    t.timestamps
+
+    t.timestamps null: false
   end
 end
 
