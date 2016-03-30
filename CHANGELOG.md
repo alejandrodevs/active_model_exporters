@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Version 0.4.1
+* Improvements: Moving dependecies to .gemspec
+
 ### Version 0.4.0
 * Ruby ~> 1.9.3 is not longer supported.
 * activemodel version dependency >= 4.0.
