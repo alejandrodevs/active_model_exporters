@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
+# Specify your gem's dependencies in active_model_exporters.gemspec
 gemspec
-gem 'coveralls', require: false
+
 gem 'simplecov'
-gem 'sqlite3'
-gem 'rails'
+gem 'coveralls', require: false
