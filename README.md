@@ -126,3 +126,7 @@ Rejected attributes will be blank in the downloaded file.
 New feature or code refactoring? Submit a pull request that implements it. Don't forget to write your tests and include a CHANGELOG with your updates.
 
 Thank you!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/alejandrodevs/active_model_exporters/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
