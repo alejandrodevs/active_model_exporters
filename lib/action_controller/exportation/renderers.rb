@@ -4,7 +4,7 @@ ActiveModel::Exporter::TYPES.each do |type|
 
     if resource.respond_to?(method)
       encode = options[:encode] || 'iso-8859-1'
-      mtype  = "Mime::#{type.upcase}".safe_constantize
+      mtype  = Mime[type.to_sym]
       file   = resource.send(method).encode(encode)
 
       default_options = {type: mtype, disposition: 'attachment'}

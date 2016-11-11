@@ -16,13 +16,11 @@ require 'fixtures/exporters'
 require 'fixtures/active_record/models'
 require 'fixtures/active_record/exporters'
 
+ActiveSupport::TestCase.test_order = :random
+
 module TestHelper
   Routes = ActionDispatch::Routing::RouteSet.new
-  Routes.draw do
-    get ':controller(/:action(/:id))'
-    get ':controller(/:action)'
-  end
-
+  Routes.draw do get ':controller(/:action)' end
   ActionController::Base.send(:include, Routes.url_helpers)
 end
 
