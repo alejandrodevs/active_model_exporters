@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_dependency 'activemodel', '>= 3.0'
+  spec.add_dependency 'activemodel', '>= 4.0'
 end
