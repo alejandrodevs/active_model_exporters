@@ -6,6 +6,6 @@ gem "sqlite3"
 gem "simplecov"
 gem "appraisal"
 gem "coveralls", require: false
-gem "rails", "~> 4.2"
+gem "rails", "~> 5.2.0"
 
 gemspec path: "../"
