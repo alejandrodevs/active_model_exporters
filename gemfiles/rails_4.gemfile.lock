@@ -1,7 +1,7 @@
 PATH
   remote: ..
   specs:
-    active_model_exporters (0.5.0)
+    active_model_exporters (0.5.1)
       activemodel (>= 4.0)
 
 GEM
