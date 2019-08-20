@@ -1,8 +1,7 @@
 require 'coveralls'
 Coveralls.wear!
 
-require 'simplecov'
-SimpleCov.start
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
 require 'ostruct'
 require 'action_controller'
@@ -20,8 +19,24 @@ ActiveSupport::TestCase.test_order = :random
 
 module TestHelper
   Routes = ActionDispatch::Routing::RouteSet.new
-  Routes.draw do get ':controller(/:action)' end
   ActionController::Base.send(:include, Routes.url_helpers)
+
+  actions = %w(
+    single_resource
+    filter_attributes
+    implicit_exporter
+    explicit_exporter
+    calling_exportation_scope
+    implicit_exportation_scope
+    explicit_exportation_scope
+  ).freeze
+
+  Routes.draw do
+    actions.each do |action|
+      get action, action: action, controller: "action_controller/exportation/csv/#{action}_test/tests"
+      get action, action: action, controller: "action_controller/exportation/xls/#{action}_test/tests"
+    end
+  end
 end
 
 class ActionController::TestCase

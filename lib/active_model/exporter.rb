@@ -9,12 +9,6 @@ module ActiveModel
 
       def attributes(*attrs)
         @_attributes.concat(attrs)
-
-        attrs.each do |attr|
-          define_method(attr) do
-            object.send(attr)
-          end unless method_defined?(attr)
-        end
       end
 
       def exporter_for(resource)
@@ -32,7 +26,12 @@ module ActiveModel
 
     def values
       attrs = filter(attributes)
-      attributes.map { |attr| send(attr) if attrs.include?(attr) }
+      attributes.map do |attr|
+        if attrs.include?(attr)
+          next send(attr) if respond_to?(attr)
+          object.send(attr)
+        end
+      end
     end
 
     def filter(attrs)

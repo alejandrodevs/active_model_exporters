@@ -1,7 +1,18 @@
 # CHANGELOG
 
+### Version 0.5.2
+* Add rails version supported 6.
+* Minimum ruby version supported 2.6.X.
+* Remove support for ruby 2.4.X.
+* Avoid defining new methods in exporter.
+* Update code base to use bundler 2.X.X.
+
+### Version 0.5.1
+* Add rails version supported 5.2.X.
+* Minimum ruby version supported 2.5.0.
+
 ### Version 0.5.0
-* Rails versions supported 4+ and 5+.
+* Rails versions supported 4.X.X and 5.X.X.
 * Minimum ruby version supported 2.2.2.
 
 ### Version 0.4.1
@@ -15,10 +26,10 @@
 * Adding support to export a single resource.
 
 ### Version 0.3.1
-* Fixing errors with rails 4.2+.
+* Fixing errors with rails 4.2.X.
 
 ### Version 0.3.0
-* Adding support to rails 4.2+.
+* Adding support to rails 4.2.X.
 
 ### Version 0.2.0
 * Using I18n translations in file headers.

@@ -4,7 +4,7 @@ module ActionController
   module Exportation::CSV
     class ImplicitExporterTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_using_implicit_exporter
+        def implicit_exporter
           render csv: [
             User.new(first_name: 'Foo1', last_name: 'Bar1'),
             User.new(first_name: 'Foo2', last_name: 'Bar2'),
@@ -16,7 +16,7 @@ module ActionController
       tests TestsController
 
       def test_render_using_implicit_exporter
-        get :render_using_implicit_exporter
+        get :implicit_exporter
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,full_name\n"\
                      "Foo1,Bar1,Foo1-Bar1\n"\
@@ -27,7 +27,7 @@ module ActionController
 
     class ExplicitExporterTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_using_explicit_exporter
+        def explicit_exporter
           render csv: [
             User.new(first_name: 'Foo1', last_name: 'Bar1')
           ], exporter: FancyUserExporter
@@ -37,7 +37,7 @@ module ActionController
       tests TestsController
 
       def test_render_using_explicit_exporter
-        get :render_using_explicit_exporter
+        get :explicit_exporter
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name\n"\
                      "Foo1,Bar1\n", @response.body
@@ -46,7 +46,7 @@ module ActionController
 
     class ImplicitExportationScopeTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_using_implicit_exportation_scope
+        def implicit_exportation_scope
           render csv: [
             User.new(first_name: 'Foo1', last_name: 'Bar1')
           ]
@@ -62,7 +62,7 @@ module ActionController
       tests TestsController
 
       def test_render_using_implicit_exportation_scope
-        get :render_using_implicit_exportation_scope
+        get :implicit_exportation_scope
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,full_name\n"\
                      "Foo1,Bar1,Foo1-Bar1-current_user\n", @response.body
@@ -71,7 +71,7 @@ module ActionController
 
     class ExplicitExportationScopeTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_using_explicit_exportation_scope
+        def explicit_exportation_scope
           render csv: [
             User.new(first_name: 'Foo1', last_name: 'Bar1')
           ], scope: current_admin
@@ -87,7 +87,7 @@ module ActionController
       tests TestsController
 
       def test_render_using_explicit_exportation_scope
-        get :render_using_explicit_exportation_scope
+        get :explicit_exportation_scope
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,full_name\n"\
                      "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
@@ -98,7 +98,7 @@ module ActionController
       class TestsController < ActionController::Base
         exportation_scope :current_admin
 
-        def render_calling_exportation_scope
+        def calling_exportation_scope
           render csv: [
             User.new(first_name: 'Foo1', last_name: 'Bar1')
           ]
@@ -114,19 +114,19 @@ module ActionController
       tests TestsController
 
       def test_render_calling_exportation_scope
-        get :render_calling_exportation_scope
+        get :calling_exportation_scope
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,full_name\n"\
                      "Foo1,Bar1,Foo1-Bar1-current_admin\n", @response.body
       end
     end
 
-    class UsingFilterAttributesTest < ActionController::TestCase
+    class FilterAttributesTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_using_filter_attributes
+        def filter_attributes
           render csv: [
-            User.new(first_name: 'Foo1', last_name: 'Bar1', email: 'FooBar1'),
-            User.new(first_name: 'Foo2', last_name: 'Bar2', email: 'FooBar2')
+            User.new(first_name: 'Foo1', last_name: 'Bar1', email: 'FooBar1@email.com'),
+            User.new(first_name: 'Foo2', last_name: 'Bar2', email: 'FooBar2@email.com')
           ], exporter: FilterUserExporter
         end
       end
@@ -134,17 +134,17 @@ module ActionController
       tests TestsController
 
       def test_render_using_filter_attributes
-        get :render_using_filter_attributes
+        get :filter_attributes
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,email\n"\
-                     "Foo1,,FooBar1\n"\
-                     "Foo2,Bar2,FooBar2\n", @response.body
+                     "Foo1,,FooBar1@email.com\n"\
+                     "Foo2,Bar2,FooBar2@email.com\n", @response.body
       end
     end
 
-    class ExporterSingleResourceTest < ActionController::TestCase
+    class SingleResourceTest < ActionController::TestCase
       class TestsController < ActionController::Base
-        def render_single_resource
+        def single_resource
           render csv: User.new(first_name: 'Foo1', last_name: 'Bar1')
         end
       end
@@ -152,7 +152,7 @@ module ActionController
       tests TestsController
 
       def test_render_single_resource
-        get :render_single_resource
+        get :single_resource
         assert_equal 'text/csv', @response.content_type
         assert_equal "first_name,last_name,full_name\n"\
                      "Foo1,Bar1,Foo1-Bar1\n", @response.body
