@@ -1,7 +1,7 @@
 PATH
   remote: ..
   specs:
-    active_model_exporters (0.5.1)
+    active_model_exporters (0.5.2)
       rails (>= 4.2)
 
 GEM
