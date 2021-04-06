@@ -19,7 +19,7 @@ module ActiveModel
     private
 
     def generate_file(options = {})
-      CSV.generate(options) do |file|
+      CSV.generate(**options) do |file|
         file << headers
         collection.each do |object|
           file << exporter_for(object).values
