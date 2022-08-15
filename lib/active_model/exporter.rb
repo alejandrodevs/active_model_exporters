@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module ActiveModel
   class Exporter
     class << self
       attr_accessor :_attributes
 
       def inherited(base)
+        super
         base._attributes = (_attributes || []).dup
       end
 
@@ -15,7 +18,6 @@ module ActiveModel
         "#{resource.class.name}Exporter".safe_constantize
       end
     end
-
 
     attr_reader :object, :scope
 

@@ -1,36 +1,40 @@
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'active_model/exporter/version'
+# frozen_string_literal: true
+
+require_relative "lib/active_model/exporter/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = 'active_model_exporters'
-  spec.version       = ActiveModel::Exporter::VERSION
-  spec.authors       = ['Alejandro Gutiérrez']
-  spec.email         = ['alejandrodevs@gmail.com']
-  spec.summary       = 'A simple way to export data in Rails.'
-  spec.description   = 'A simple way to export data in Rails.'
-  spec.homepage      = 'https://github.com/alejandrodevs/active_model_exporters'
-  spec.license       = 'MIT'
+  spec.name = "active_model_exporters"
+  spec.version = ActiveModel::Exporter::VERSION
+  spec.authors = ["Alejandro Gutiérrez"]
+  spec.email = ["alejandrodevs@gmail.com"]
 
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = spec.homepage
-  spec.metadata['changelog_uri'] = "#{spec.homepage}/blob/master/LICENSE.txt"
+  spec.summary = "A simple way to export data in Rails."
+  spec.description = "A simple way to export data in Rails."
+  spec.homepage = "https://github.com/alejandrodevs/active_model_exporters"
+  spec.license = "MIT"
+  spec.required_ruby_version = ">= 2.7.0"
+
+  # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server "https://example.com""
+
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/master/CHANGELOG.md"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files = Dir.chdir(__dir__) do
+    `git ls-files -z`.split("\x0").reject do |f|
+      (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
+    end
   end
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.bindir = "exe"
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
-  spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'bundler', '~> 2.2'
-  spec.add_development_dependency 'sqlite3', '~> 1.4'
-  spec.add_development_dependency 'minitest', '~> 5.14'
-  spec.add_development_dependency 'appraisal', '~> 2.4'
-  spec.add_development_dependency 'coveralls', '~> 0.8'
+  # Uncomment to register a new dependency of your gem
+  spec.add_dependency "rails", ">= 6.0"
 
-  spec.add_dependency 'rails', '>= 6.0'
+  # For more information and examples about making a new gem, check out our
+  # guide at: https://bundler.io/guides/creating_gem.html
 end

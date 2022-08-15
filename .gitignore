@@ -6,6 +6,5 @@
 /pkg/
 /spec/reports/
 /tmp/
-coverage
 .ruby-version
 Gemfile.lock

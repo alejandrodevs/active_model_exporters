@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module ActiveModel
   class Exporter
-    TYPES = [:csv, :xls]
+    TYPES = %i[csv xls].freeze
   end
 end

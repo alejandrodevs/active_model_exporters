@@ -1,8 +1,14 @@
-require 'i18n'
+# frozen_string_literal: true
 
-class I18n::Backend::Simple
-  def translations_store
-    translations
+require "i18n"
+
+module I18n
+  module Backend
+    class Simple
+      def translations_store
+        translations
+      end
+    end
   end
 end
 
@@ -12,8 +18,8 @@ I18n.backend.translations_store[:en] = {
   activerecord: {
     attributes: {
       ar_user: {
-        first_name: 'First',
-        last_name: 'Last'
+        first_name: "First",
+        last_name: "Last"
       }
     }
   }

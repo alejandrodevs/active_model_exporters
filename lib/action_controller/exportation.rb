@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActionController
   module Exportation
     extend ActiveSupport::Concern
@@ -14,7 +16,7 @@ module ActionController
     end
 
     ActiveModel::Exporter::TYPES.each do |type|
-      [:_render_option_, :_render_with_renderer_].each do |prefix|
+      %i[_render_option_ _render_with_renderer_].each do |prefix|
         define_method "#{prefix}#{type}" do |resource, options|
           exporter = build_exporter(resource, options)
           exporter ? super(exporter, options) : super
@@ -30,10 +32,9 @@ module ActionController
     end
 
     def build_exporter(resource, options)
-      if exporter = ActiveModel::ArrayExporter
-        options[:scope] ||= exportation_scope
-        exporter.new(resource, options)
-      end
+      return unless (exporter = ActiveModel::ArrayExporter)
+      options[:scope] ||= exportation_scope
+      exporter.new(resource, options)
     end
   end
 end

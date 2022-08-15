@@ -1,19 +1,21 @@
-require 'coveralls'
+# frozen_string_literal: true
+
+require "coveralls"
 Coveralls.wear!
 
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 
-require 'ostruct'
-require 'action_controller'
-require 'active_model_exporters'
-require 'minitest/autorun'
-require 'minitest/unit'
-require 'minitest/pride'
-require 'fixtures/locale'
-require 'fixtures/models'
-require 'fixtures/exporters'
-require 'fixtures/active_record/models'
-require 'fixtures/active_record/exporters'
+require "ostruct"
+require "action_controller"
+require "active_model_exporters"
+require "minitest/autorun"
+require "minitest/unit"
+require "minitest/pride"
+require "fixtures/locale"
+require "fixtures/models"
+require "fixtures/exporters"
+require "fixtures/active_record/models"
+require "fixtures/active_record/exporters"
 
 ActiveSupport::TestCase.test_order = :random
 
@@ -21,7 +23,7 @@ module TestHelper
   Routes = ActionDispatch::Routing::RouteSet.new
   ActionController::Base.send(:include, Routes.url_helpers)
 
-  actions = %w(
+  actions = %w[
     single_resource
     filter_attributes
     implicit_exporter
@@ -29,7 +31,7 @@ module TestHelper
     calling_exportation_scope
     implicit_exportation_scope
     explicit_exportation_scope
-  ).freeze
+  ].freeze
 
   Routes.draw do
     actions.each do |action|
@@ -39,8 +41,10 @@ module TestHelper
   end
 end
 
-class ActionController::TestCase
-  def setup
-    @routes = TestHelper::Routes
+module ActionController
+  class TestCase
+    def setup
+      @routes = TestHelper::Routes
+    end
   end
 end
