@@ -1,7 +1,17 @@
 # CHANGELOG
 
+### Version 0.7.0
+* Add support for rails 7.0.
+* Add support for ruby 3.1.
+* Stop supporting rails 5.2.
+* Stop supporting ruby 2.6.
+
+### Version 0.6.0
+* Add support for rails 6.1.
+* Add support for ruby 3.0.
+
 ### Version 0.5.2
-* Add rails version supported 6.
+* Add support for rails 6.0.
 * Minimum ruby version supported 2.6.X.
 * Remove support for ruby 2.4.X.
 * Avoid defining new methods in exporter.
